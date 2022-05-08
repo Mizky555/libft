@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsirirak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/20 14:10:39 by tsirirak          #+#    #+#             */
-/*   Updated: 2022/04/06 03:06:34 by tsirirak         ###   ########.fr       */
+/*   Created: 2022/04/06 23:31:21 by tsirirak          #+#    #+#             */
+/*   Updated: 2022/04/24 02:21:15 by tsirirak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlcpy(char *dst, const char *src, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
-	size_t	srcsize;
+	void	*a;
 
-	srcsize = ft_strlen(src);
-	if (size <= 0)
-		return (srcsize);
-	else if (srcsize + 1 < size)
-		ft_memcpy(dst, src, srcsize + 1);
-	else
-	{
-		ft_memcpy(dst, src, size - 1);
-		dst[size - 1] = '\0';
-	}
-	return (srcsize);
+	if (count == SIZE_MAX || size == SIZE_MAX)
+		return (NULL);
+	a = malloc(count * size);
+	if (a == 0)
+		return (0);
+	ft_bzero(a, count * size);
+	return (a);
 }

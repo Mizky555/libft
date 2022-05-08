@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsirirak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/20 14:10:39 by tsirirak          #+#    #+#             */
-/*   Updated: 2022/04/06 03:06:34 by tsirirak         ###   ########.fr       */
+/*   Created: 2022/04/10 19:31:10 by tsirirak          #+#    #+#             */
+/*   Updated: 2022/04/10 20:30:24 by tsirirak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlcpy(char *dst, const char *src, size_t size)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	srcsize;
+	char	*str;
+	size_t	i;
+	int		j1;
+	int		j2;
+	size_t	len;
 
-	srcsize = ft_strlen(src);
-	if (size <= 0)
-		return (srcsize);
-	else if (srcsize + 1 < size)
-		ft_memcpy(dst, src, srcsize + 1);
-	else
+	len = ft_strlen(s1) + ft_strlen(s2);
+	str = malloc(sizeof(char) * len + 1);
+	i = 0;
+	j1 = 0;
+	j2 = 0;
+	if (str == NULL)
+		return (NULL);
+	if (s1 == NULL && s2 == NULL)
+		return (NULL);
+	while (i < len)
 	{
-		ft_memcpy(dst, src, size - 1);
-		dst[size - 1] = '\0';
+		if (i < ft_strlen(s1))
+			str[i] = s1[j1++];
+		else if (i < len)
+			str[i] = s2[j2++];
+		i++;
 	}
-	return (srcsize);
+	str[i] = '\0';
+	return (str);
 }

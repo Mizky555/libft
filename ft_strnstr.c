@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main2.c                                            :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsirirak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/13 12:45:58 by tsirirak          #+#    #+#             */
-/*   Updated: 2022/03/13 12:55:09 by tsirirak         ###   ########.fr       */
+/*   Created: 2022/04/06 04:11:28 by tsirirak          #+#    #+#             */
+/*   Updated: 2022/04/06 20:03:53 by tsirirak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-int main(void)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	char str[12] = "HELLO WORLD";
-	char *src = &str[0];
-	char *dst = &str[3];
+	size_t	i;
+	size_t	j;
 
-	printf("src: %s\n", src);
-	printf("src_a: %lu\n", src);
-	printf("dst: %s\n", dst);
-	printf("dst_a: %lu\n", dst);
-
-	ft_memcpy(dst, src, 8);
-	printf("src: %s\n", src);
-	printf("dst: %s\n", dst);
+	i = 0;
+	if (needle[i] == '\0')
+		return ((char *)haystack);
+	while (haystack[i] != '\0' && len > i)
+	{
+		j = 0;
+		while ((i + j) < len && haystack[i + j] == needle[j] && needle[j])
+		{
+			j++;
+		}
+		if (needle[j] == '\0')
+			return ((char *)&(haystack[i]));
+		i++;
+	}
+	return (0);
 }

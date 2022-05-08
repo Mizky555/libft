@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsirirak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/20 14:10:39 by tsirirak          #+#    #+#             */
-/*   Updated: 2022/04/06 03:06:34 by tsirirak         ###   ########.fr       */
+/*   Created: 2022/04/22 23:28:33 by tsirirak          #+#    #+#             */
+/*   Updated: 2022/04/22 23:53:01 by tsirirak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlcpy(char *dst, const char *src, size_t size)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	srcsize;
+	char	*sss;
+	int		i;
 
-	srcsize = ft_strlen(src);
-	if (size <= 0)
-		return (srcsize);
-	else if (srcsize + 1 < size)
-		ft_memcpy(dst, src, srcsize + 1);
-	else
+	if (!s || !f)
+		return (NULL);
+	i = 0;
+	sss = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!sss)
+		return (NULL);
+	while (s[i])
 	{
-		ft_memcpy(dst, src, size - 1);
-		dst[size - 1] = '\0';
+		sss[i] = f(i, s[i]);
+		i++;
 	}
-	return (srcsize);
+	sss[i] = '\0';
+	return (sss);
 }

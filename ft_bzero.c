@@ -6,9 +6,10 @@
 /*   By: tsirirak <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 20:56:36 by tsirirak          #+#    #+#             */
-/*   Updated: 2022/03/13 00:04:40 by tsirirak         ###   ########.fr       */
+/*   Updated: 2022/04/24 01:51:51 by tsirirak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
